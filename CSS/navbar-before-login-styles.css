@@ -13,8 +13,17 @@ nav.navbar{
 }
 .navbar-right-part{
     display:flex;
-    justify-content:space-around;
     width:10vw;
-    list-style-type: none;
-    
+}
+button{
+    font-size: larger;
+    margin:0% 10% 0% 0%;
+    border-radius: 5px;
+    padding:2% 2% 2% 2%;
+}
+button li{
+    list-style: none;
+}
+.navbar ul{
+    margin-right: 2%;
 }
