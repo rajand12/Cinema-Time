@@ -1,9 +1,21 @@
 <?php
 include '../includes/navbar-before-login.php';
 ?>
-<p style="height:6vh">
-    this is main content
-</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinema Time</title>
+    <style>
+        body
+    </style>
+</head>
+<body>
+    
+</body>
+</html>
 <?php
 
 include '../includes/footer.php';

@@ -1,4 +1,33 @@
 <?php
+    if($_POST){
+    $user_name = $_REQUEST[ 'user-name' ];
+    $password = $_REQUEST[ 'password' ];
+    $login_check = "select *  from user_credentials where 'user_name'='$user_name';";
+    $result = mysqli_query($conn,$login_check);
+    $check = mysqli_num_rows($result);
+    $error_msg = "";
+    $error_msg2 = "";
+    if ($check>0) {
+        $row = mysqli_fetch_assoc($result);
+        $pass = $row['password'];
+        $password_validated = password_verify($password,$pass);
+        if ( $password_validated == true ) {
+            if ($row[ 'is_admin' ] == 1 ) {
+                $_SESSION['user-name'] = $row['user_name'];
+                header( 'location:admin.php' );
+            } else {
+                $_SESSION['user-name'] = $row['user_name'];
+                header( 'location:main-content.php' );
+            }
+            
+        }else{
+            $error_msg2 = "Invalid Password";
+        }
+    }else{
+        $error_msg = "User Name doesn't exist";
+    }
+    mysqli_close( $conn );
+}
 
 ?>
 <!DOCTYPE html>
@@ -10,18 +39,20 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Login</title>
     <link rel="stylesheet" href="../CSS/login-style.css">
+    <script type="text/javascript" src="../Script/login_validation.js"></script>
 </head>
 
 <body>
     <div class='main-div'>
-        <form action='' method='POST' id='login-form' onsubmit="event.preventDefault();login_validation()">
+        <form id="loginForm" action='' method='POST' id='login-form' onsubmit="event.preventDefault();loginValidation()">
             <label for='user-name'>User Name</label>
-            <input type='text' name="user-name" placeholder="Enter your username">
+            <input type='text' name="user-name" id="user-name" placeholder="Enter your username">
             <span class="error-message" id="user-name-validation"></span>
+            <span id="backend-error-message"><?=$error_msg?></span>
             <label for='password'>Password</label>
-            <input type='password' name="password" placeholder="Enter your password">
+            <input type='password' name="password" id="password" placeholder="Enter your password">
             <span class="error-message" id="password-validation"></span>
-            <span id="backend-error-message"></span>
+            <span id="backend-error-message"><?=$error_msg2?></span>
             <input type="submit" value="Login">
             <hr>
             <p>Don't have an account</p>

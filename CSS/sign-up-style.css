@@ -34,3 +34,7 @@ p{
     margin-left:2%;
     font-weight:bold;
 }
+.error-message{
+    color: red;
+    margin-left: 2%;
+}
