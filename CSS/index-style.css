@@ -30,3 +30,8 @@ button li{
 a{
     text-decoration: none;
 }
+body{
+    background-image: url("bg.jpg");
+    background-repeat: no-repeat;
+    background-size: fill;
+}

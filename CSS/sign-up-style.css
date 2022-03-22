@@ -38,3 +38,11 @@ p{
     color: red;
     margin-left: 2%;
 }
+.backend-error-message{
+    color: red;
+    margin-left: 2%;
+}
+.backend-success-message{
+    color: greenyellow;
+    margin-left: 2%;
+}

@@ -1,21 +1,21 @@
 <?php
-    include "database_configuration.php";
-    if($_POST){
+$message = "";
+$error_message = "";
+include "database_configuration.php";
+if($_POST){
         $fullName = $_REQUEST['full-name'];
         $email = $_REQUEST['email'];
         $userName = $_REQUEST['user-name'];
-        $userName = $_REQUEST['user-name'];
         $password = $_REQUEST['password'];
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $checkUser = "SLEECT * form user_details where user_name='$userName';";
+        $checkUser = "SELECT `user_name` from `user_details` where user_name='$userName'";
         $userResult = mysqli_query($conn,$checkUser);
         $finalResult = mysqli_num_rows($userResult);
-        $message = "";
         if($finalResult>0){
-            $message = "User name already exist try another";
+            $error_message = "User name already exist try another";
         }
         else{
-            $createUser = "INSERT into user_details (full_name,email,user_name,password) VALUES ('$fullName','$email','$userName','$hashedPassword');";
+            $createUser = "INSERT into `user_details` (`full_name`,`email`,`user_name`,`password`) VALUES ('$fullName','$email','$userName','$hashedPassword')";
             if(mysqli_query($conn,$createUser)){
                 $message = "User created successfully";
                 $headers = "MIME-Version: 1.0" . "\r\n";
@@ -23,16 +23,11 @@
                 $headers .="From: less.secure.email.for.students@gmail.com"."\r\n";
                 $subject = "Welcome to Cinema Time";
                 $email = "$email";
-                $body = "Hello $fullName,<br>You have used this email to sign in to Cinema Time.<br>Regards,<br>Cinema Time Team";
-                $success = mail($email,$subject,$body,$headers);
-                echo $success;
-                if(!$success){
-                    echo "Couldn't send mail";
-                }
-
+                $body = "Hello $fullName,<br>You have used this email to sign up to Cinema Time.<br>Regards,<br>Cinema Time Team";
+                $sendMail = mail($email,$subject,$body,$headers);
             }
             else{
-                $message = "Couldn't create user";
+                $error_message = "Couldn't create user";
             }
         }
         mysqli_close($conn);
@@ -40,6 +35,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -48,9 +44,10 @@
     <script type="text/javascript" src="../Script/sign_up_validation.js"></script>
     <title>Sign Up</title>
 </head>
+
 <body>
     <div class="main-div">
-        <form id="signUPForm" action="" method="POST" onsubmit="event.preventDefault();signUpValidation()">
+        <form id="signUPForm" action="" method="POST" onsubmit="signUpValidation();">
             <label for="full-name">Full Name</label>
             <input type="text" name="full-name" id="full-name" placeholder="John Smith">
             <span class="error-message" id="full-name-validation"></span>
@@ -66,10 +63,12 @@
             <label for="confirm-password">Confirm Password</label>
             <input type="password" name="confirm-password" id="confirm-password" placeholder="Re-enter your password">
             <span class="error-message" id="confirm-password-validation"></span>
-            <span class="backend-error-message"><? $message?></span>
+            <span class="backend-error-message"><?= $error_message?></span>
             <input type="submit" value="Sign Up">
+            <span class="backend-success-message"><?= $message?></span>
             <p>Already have an account <a href="login.php">Proceed to Login</a></p>
         </form>
     </div>
 </body>
+
 </html>
