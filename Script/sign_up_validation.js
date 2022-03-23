@@ -4,12 +4,12 @@ function signUpValidation() {
   var user_name = document.getElementById("user-name").value;
   var password = document.getElementById("password").value;
   var confirm_password = document.getElementById("confirm-password").value;
-  const full_nameREGEXP =
+  var full_nameREGEXP =
     /(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})/;
   var full_name_final = full_nameREGEXP.test(full_name);
-  const emailREGEXP = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  var emailREGEXP = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   var email_final = emailREGEXP.test(email);
-  const user_nameREGEXP = /^[A-Za-z][A-Za-z0-9_]{7,29}$/;
+  var user_nameREGEXP = /^[A-Za-z][A-Za-z0-9_]{7,29}$/;
   var user_name_final = user_nameREGEXP.test(user_name);
   var fullNameValidation = document.getElementById("full-name-validation");
   var emailValidation = document.getElementById("email-validation");
@@ -44,7 +44,7 @@ function signUpValidation() {
     if (user_name.trim() == "") {
       userNameValidation.innerHTML = "User Name cannot be empty";
       userNameValidation.style.display = "block";
-    } else if (user_name_final.length < 7 && user_name_final.length > 12) {
+    } else if (user_name_final.length < 7 || user_name_final.length > 12) {
       userNameValidation.innerHTML =
         "User name must be between 7 and 12 characters";
       userNameValidation.style.display = "block";
@@ -59,7 +59,7 @@ function signUpValidation() {
     if (password == "") {
       passwordValidation.innerHTML = "Password cannot be empty";
       passwordValidation.style.display = "block";
-    } else if (password.length < 8 && password.length > 18) {
+    } else if (password.length < 8 || password.length > 18) {
       passwordValidation.innerHTML =
         "Password must be between 8 and 18 characters";
       passwordValidation.style.display = "block";
