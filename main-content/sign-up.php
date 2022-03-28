@@ -47,7 +47,7 @@ if($_POST){
 
 <body>
     <div class="main-div">
-        <form id="signUPForm" action="" method="POST" onsubmit="signUpValidation();">
+        <form id="signUPForm" action="" method="POST" onsubmit="event.preventDefault();signUpValidation();">
             <label for="full-name">Full Name</label>
             <input type="text" name="full-name" id="full-name" placeholder="John Smith">
             <span class="error-message" id="full-name-validation"></span>
