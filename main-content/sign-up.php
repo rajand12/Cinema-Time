@@ -12,7 +12,7 @@ if($_POST){
         $userResult = mysqli_query($conn,$checkUser);
         $finalResult = mysqli_num_rows($userResult);
         if($finalResult>0){
-            $error_message = "User name already exist try another";
+            $error_message = "User name already exists try another";
         }
         else{
             $createUser = "INSERT into `user_details` (`full_name`,`email`,`user_name`,`password`) VALUES ('$fullName','$email','$userName','$hashedPassword')";
@@ -23,7 +23,7 @@ if($_POST){
                 $headers .="From: less.secure.email.for.students@gmail.com"."\r\n";
                 $subject = "Welcome to Cinema Time";
                 $email = "$email";
-                $body = "Hello $fullName,<br>You have used this email to sign up to Cinema Time.<br>Regards,<br>Cinema Time Team";
+                $body = "Hello $fullName,<br><br>You have used this email to sign up to Cinema Time.<br><br>Regards,<br>Cinema Time Team";
                 $sendMail = mail($email,$subject,$body,$headers);
             }
             else{
@@ -47,7 +47,7 @@ if($_POST){
 
 <body>
     <div class="main-div">
-        <form id="signUPForm" action="" method="POST" onsubmit="event.preventDefault();signUpValidation();">
+        <form id="sign-up-form" action="" method="POST" onsubmit="event.preventDefault();signUpValidation();">
             <label for="full-name">Full Name</label>
             <input type="text" name="full-name" id="full-name" placeholder="John Smith">
             <span class="error-message" id="full-name-validation"></span>

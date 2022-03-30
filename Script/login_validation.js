@@ -7,6 +7,7 @@ function loginValidation(){
     if(user_name.trim() == ""){
         userNameValidation.innerHTML = 'User name is empty';
         userNameValidation.style.display = 'block';
+        isValidated = false;
     }
     else{
         userNameValidation.style.display = 'none';
@@ -15,13 +16,13 @@ function loginValidation(){
     if(password == ""){
         passwordValidation.innerHTML = 'Password is empty';
         passwordValidation.style.display = 'block';
+        isValidated = false;
     }
     else{
         passwordValidation.style.display = 'none';
         isValidated = true;
     }
     if(isValidated == true){
-        document.getElementById('login-form').submit();
+        document.getElementById('loginForm').submit();
     }
-    
 }
