@@ -15,10 +15,14 @@ if ( $_POST ) {
         $password_validated = password_verify( $password, $pass );
         if ( $password_validated == true ) {
             if ( $row[ 'is_admin' ] == 1 ) {
-                $_SESSION[ 'user-name' ] = $row[ 'user_name' ];
+                $_SESSION[ 'full-name' ] = $row[ 'full_name' ];
+                $_SESSION['user-id'] = $row['user_id'];
+                $_SESSION['admin-logged-in'] = true;
                 header( 'location:admin.php' );
             } else {
-                $_SESSION[ 'user-name' ] = $row[ 'user_name' ];
+                $_SESSION[ 'full-name' ] = $row[ 'full_name' ];
+                $_SESSION['user-id'] = $row['user_id'];
+                $_SESSION['logged-in'] = true;
                 header( 'location:after-login.php' );
             }
 
@@ -39,6 +43,7 @@ if ( $_POST ) {
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Login</title>
     <link rel='stylesheet' href='../CSS/login-style.css'>
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
     <script type='text/javascript' src='../Script/login_validation.js'></script>
 </head>
 

@@ -41,6 +41,7 @@ if($_POST){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/sign-up-style.css">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
     <script type="text/javascript" src="../Script/sign_up_validation.js"></script>
     <title>Sign Up</title>
 </head>

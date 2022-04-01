@@ -1,12 +1,11 @@
 *{
     padding:0;
     margin:0;
+    font-size:18px;
+    color: red;
 }
 body{
-    color: white;
-    background-image: url("../Images/bg2.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-color: aqua;
     
 }
 .navbar{
@@ -17,11 +16,118 @@ body{
     height: 8vh;
 }
     input[type=text]{
-        height:30px;
-        width:80%;
+        /* height:30px; */
+        /* width:80%; */
     }
     input[type=submit]{
-        height:30px;
+        height:35px;
         width:50%;
     }
+    .dropdown-list{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .search-bar{
+        display: flex;
+        flex-direction: row;
+        margin-left:2%;
+        padding:0px;
+    }
+    .user-info{
+        margin-right:2%;
+    }
+    .user-info ul{
+        list-style: none;
+        margin:0px;
+        padding:0px;
+    }
+    .user-info ul li ul li{
+        display:none;
+        text-shadow: 1px 1px 1px greenyellow;
+    }
+    .user-info ul li:hover ul li{
+        display:block;
+    }
+    .user-info ul li{
+        float: right;
+        width:150px;
+        height:40px;
+        background-color: black;
+        opacity:0.8;
+        text-align:center;
+        line-height:40px;
+        font-size:18px;
+        margin-right:2px;
+    }
+    .user-info ul li a{
+        text-decoration:none;
+        display:block;
+    }
+    .user-info ul li a:hover{
+        background-color:green;
+    }
+    .user-info ul li ul li{
+        display:none;
+    }
+    .user-info ul li:hover ul li{
+        display:block;
+    }
+    form{
+        display: flex;
+        flex-direction: row;
+        column-gap: 10px;
+    }
+    /* .grid-container{
+        display:grid;
+        height:90vh;
+        width:90vw;
+        margin-top:1%;
+        margin-left:1%;
+        flex-direction: column;
+    }
+    .grid-item{
+        display: grid;
+        width:40vw;
+        height:40vh;
+        background-color: aqua;
+        margin-right: 2%;
+    }
+    .flex-item img{
+        height:auto;
+        width:20%;
+    } */
+    .movies-box{
+        margin-top: 1%;
+        margin-left: 1%;
+        display: grid;
+        justify-content: space-between;
+        grid-template-columns: 30vw 30vw 30vw;
+        row-gap: 1%;
+    }
+    .movies{
+        display:flex;
+        flex-direction: column;
+        border:5px solid red;
+        justify-content: center;
+        align-items: center;
+    }
+    .movies img{
+        height:70%;
+        width:70%;
+        margin-top: 1%;
+    }
+    .movies p{
+        padding:2%;
+        text-align: justify;
+    }
+    .movies button{
+        margin-bottom: 1%;
+    }
+    input{
+        margin-left: 2%;
+    }
+    
+
+    
   
