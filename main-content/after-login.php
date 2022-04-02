@@ -1,10 +1,10 @@
 <?php
 
 session_start();
-if ( $_SESSION[ 'logged-in' ] == false ) {
+if ( $_SESSION[ 'user-logged-in' ] == false ) {
     header( 'location:login.php' );
 }
-include 'database_configuration.php';
+require_once 'database_configuration.php';
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -62,11 +62,11 @@ while ( $countries = mysqli_fetch_assoc( $result ) ) {
         <div class='user-info'>
             <ul>
                 <li><a>
-                        <?=$_SESSION[ 'full-name' ]?>
+                        <?=$_SESSION['full_name']?>
                     </a>
                     <ul>
                         <li><a>My Movies</a></li>
-                        <li><a href="logout.php">Logout</a></li>
+                        <li><a href="customer-logout.php">Logout</a></li>
                         <ul>
                 </li>
             </ul>
@@ -138,9 +138,9 @@ if ( $result->num_rows>0 ) {
             var search_value = $('#search-value').val();
             console.log(search_value);
             $.post('search-page.php',{
-                search: search_value;
+                search: search_value
             },(info)=>{
-                $.('.movie-box').html(info);
+                $('.movies-box').html(info);
             })
 
         })

@@ -1,7 +1,7 @@
 <?php
+session_start();
 $error_msg = '';
 $error_msg2 = '';
-session_start();
 include 'database_configuration.php';
 if ( $_POST ) {
     $user_name = $_REQUEST[ 'user-name' ];
@@ -15,14 +15,18 @@ if ( $_POST ) {
         $password_validated = password_verify( $password, $pass );
         if ( $password_validated == true ) {
             if ( $row[ 'is_admin' ] == 1 ) {
-                $_SESSION[ 'full-name' ] = $row[ 'full_name' ];
-                $_SESSION['user-id'] = $row['user_id'];
+                $admin_row = mysqli_fetch_array( $result );
+                $_SESSION['admin_full_name'] = $row[ 'full_name' ];
+                $_SESSION['admin_id'] = $row['user_id'];
+                $_SESSION['admin_email'] = $row['email'];
                 $_SESSION['admin-logged-in'] = true;
                 header( 'location:admin.php' );
             } else {
-                $_SESSION[ 'full-name' ] = $row[ 'full_name' ];
-                $_SESSION['user-id'] = $row['user_id'];
-                $_SESSION['logged-in'] = true;
+                
+                $customer_row = mysqli_fetch_array( $result );
+                $_SESSION[ 'full_name' ] = $row[ 'full_name' ];
+                $_SESSION['user_id'] = $row['user_id'];
+                $_SESSION['user-logged-in'] = true;
                 header( 'location:after-login.php' );
             }
 
@@ -68,6 +72,7 @@ if ( $_POST ) {
             <button><a href='sign-up.php'>Create an account</a></button>
         </form>
     </div>
+    
 </body>
 
 </html>

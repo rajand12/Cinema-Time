@@ -54,11 +54,12 @@ body{
         width:150px;
         height:40px;
         background-color: black;
-        opacity:0.8;
         text-align:center;
         line-height:40px;
         font-size:18px;
         margin-right:2px;
+        position:relative;
+        z-index: 1;
     }
     .user-info ul li a{
         text-decoration:none;

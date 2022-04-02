@@ -1,18 +1,18 @@
 <?php
     include 'database_configuration.php';
-    $genre = $_POST['genre'];
-    $sql = "SELECT * from `movies_details` inner join `genre` on movies_details.id = genre.movie_id where genre.name='$genre'";
+    $search_item = $_POST['search'];
+    $sql = "SELECT * from `movies_details` where `name` like '%$search_item%'";
     $result = mysqli_query($conn,$sql);
     $genres = mysqli_num_rows($result);
     if($genres<=0){
-        
+        echo "No records to show";
     }
     else{
 ?> <div class="movies-box">
 <?php
 $i = 0;
 
-$fetch_movies = $sql = "SELECT * from `movies_details` inner join `genre` on movies_details.id = genre.movie_id where genre.name='$genre'";
+$fetch_movies = "SELECT * from `movies_details` where `name` like '%$search_item%'";
 $result = $conn->query( $fetch_movies );
 $num_movies = mysqli_num_rows($result);
 if ( $result->num_rows>0 ) {
