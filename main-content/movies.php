@@ -7,6 +7,9 @@
 ?>
 <?php
 require_once "admin.php";
+if($_SESSION['alert']==true){
+    echo$_SESSION['dalert'];
+}
 ?>
 <div class="main_contaier">
 <div class="container">
@@ -22,6 +25,7 @@ require_once "admin.php";
 <th>Poster</th>
 <th>Rent Price</th>
 <th>Buy Price</th>
+<th>Actions</th>
 
 
 
@@ -50,6 +54,16 @@ while( $query_row = mysqli_fetch_array($query_result) )
     ?></td>
     <td><?php echo $query_row[ 'buy_price' ];
     ?></td>
+    <td>
+        <form action="update-movie.php" method="POST">
+        <input type="number" style="display:none" value="<?=$query_row['id']?>" name="id">
+        <button class="primary_btn">Update</button>
+        </form>
+        <form action="delete-movie.php" method="POST">
+        <input type="number" style="display:none" value="<?=$query_row['id']?>" name="id">
+        <button class="danger_btn">Delete</button>
+        <form>
+    </td>
     
     
     </tr>

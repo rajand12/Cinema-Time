@@ -32,12 +32,18 @@ $i++;
         </p>
         <p class='description'>Description: <?=$row[ 'description' ]?>
         </p>
+        <form method="GET" action="movie-display.php">
+                        <input type="number" style="display:none" value="<?=$row['id']?>" name="id">
         <button class='rent-buy'>Rent<span>
                 <?=$row[ 'rent_price' ]?>
             </span></button>
+</form>
+<form method="GET" action="movie-display.php">
+                        <input type="number" style="display:none" value="<?=$row['id']?>" name="id">
         <button class='rent-buy'>Buy<span>
                 <?=$row[ 'buy_price' ]?>
             </span></button>
+</form>
     </div>
 
 

@@ -1,4 +1,5 @@
 <?php
+
 include 'database_configuration.php';
 ?>
 <?php 
@@ -22,14 +23,14 @@ require_once "admin.php";
                 <label for='poster'>Poster</label><br>
                 <input type='file' name='poster' ><br>
                 <label for='movie'>Movie</label><br>
-                <input type='file' name='movie' accept="video/*"><br> -->
-                <label for='rent-price'>Rent Price</label><br> -->
+                <input type='file' name='movie' accept="video/*"><br>
+                <label for='rent-price'>Rent Price</label><br>
                 <input type='number' name='rent-price' required><br>
                 <label for='buy-price'>Buy Price</label><br>
                 <input type='number' name='buy-price' required><br>
                 <input type='submit' value='Add Movie'>
             </form>
-
+            
         </div>
 
     </div>
@@ -46,21 +47,42 @@ require_once "admin.php";
             $movie = $_FILES['movie'];
             $rent_price = $_REQUEST['rent-price'];
             $buy_price = $_REQUEST['buy-price'];
-
-
             // file
             // poster
             $pname = $poster['name'];
             $ptmp_name = $poster['tmp_name'];
             $perror = $poster['error'];
-
-            if($perror == 0){
-                $pdistfolder = 'uploadedfile/'.$pname;
-                if(move_uploaded_file($ptmp_name,$distfolder)){
-
-                }
+            if($perror == 0 ){
+                $pdestfolder = '../Posters/'.$pname;
+                
+               if( move_uploaded_file($ptmp_name,$pdestfolder)){
+                // echo"Poster uploaded";
+            //    }else{
+            //        echo"Poster not uploaded";
+               }
+            }   
+            // movie
+            $mname = $movie['name'];
+            $mtmp_name = $movie['tmp_name'];
+            $merror = $movie['error'];
+            if($merror == 0 ){
+                $mdestfolder = '../Movies/'.$mname;
+                
+               if( move_uploaded_file($mtmp_name,$mdestfolder)){
+            //     echo"Video uploaded";
+            //    }else{
+            //        echo"Video not uploaded";
+               }
             }
-
-        }   
+            $query = "INSERT into `movies_details` (`name`,`country`,`release`,`cast`,`description`,`movie_thumbnail`,`movie_path`,`rent_price`,`buy_price`) 
+                    VALUES ('$name','$country','$release','$cast','$description','$pdestfolder','$mdestfolder',$rent_price,$buy_price)";
+                    // echo "$query";
+            if(mysqli_query($conn,$query)){
+                echo'<script>alert("Movie added successfully")</script>';
+            }
+            else{
+                echo'<script>alert("Couldn`t add movie")</script>';
+            }
+        }
 
 ?>

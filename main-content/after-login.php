@@ -96,12 +96,20 @@ if ( $result->num_rows>0 ) {
                     </p>
                     <p class='description'>Description: <?=$row[ 'description' ]?>
                     </p>
-                    <button class='rent-buy'>Rent<span>
+                    <form method="GET" action="movie-display.php">
+                        <input type="number" style="display:none" value="<?=$row['id']?>" name="id">
+                        <button class='rent-buy'>Rent<span>
                             <?=$row[ 'rent_price' ]?>
-                        </span></button>
-                    <button class='rent-buy'>Buy<span>
+                        </span>
+                        </button>
+                    </form>
+                    <form  method="GET" action="movie-display.php">
+                        <input type="number" style="display:none" value="<?=$row['id']?>" name="id">
+                        <button class='rent-buy'>Buy<span>
                             <?=$row[ 'buy_price' ]?>
-                        </span></button>
+                        </span>
+                        </button>
+                    </form>
                 </div>
      
 
