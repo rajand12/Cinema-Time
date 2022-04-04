@@ -28,7 +28,7 @@ require_once "admin.php";
                 <input type='number' name='rent-price' required><br>
                 <label for='buy-price'>Buy Price</label><br>
                 <input type='number' name='buy-price' required><br>
-                <input type='submit' value='Add Movie'>
+                <input type='submit' value='Add Movie' class="primary_btn">
             </form>
             
         </div>

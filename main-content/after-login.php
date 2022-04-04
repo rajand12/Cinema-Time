@@ -24,19 +24,7 @@ require_once 'database_configuration.php';
     <nav class='navbar'>
         <img src='text-logo.png' alt=''>
         <div class='dropdown-list'>
-            <label for="genre">Genre</label>
-                    <select name="genre" id="genre">
-                    <option value="Genre" selected disabled>Select Genre</option>
-                    <?php
-$sql2 = 'SELECT DISTINCT `name` from genre';
-$result2 = mysqli_query( $conn, $sql2 );
-while ( $genres = mysqli_fetch_assoc( $result2 ) ) {
-    ?>
-                        <option value="<?php echo$genres[ 'name' ] ?>"><?php echo$genres[ 'name' ] ?></option>
-                        <?php
-}
-?>
-                    </select>
+            
                         
 
                     
@@ -65,7 +53,7 @@ while ( $countries = mysqli_fetch_assoc( $result ) ) {
                         <?=$_SESSION['full_name']?>
                     </a>
                     <ul>
-                        <li><a>My Movies</a></li>
+                        <!-- <li><a>My Movies</a></li> -->
                         <li><a href="customer-logout.php">Logout</a></li>
                         <ul>
                 </li>
@@ -123,16 +111,16 @@ if ( $result->num_rows>0 ) {
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
     $(document).ready(()=>{
-        var selectedItem = document.getElementById("genre");
-            selectedItem.onchange = function() {
-            var selectedOption = this.options[this.selectedIndex].value;
-            console.log(selectedOption );
-            $.post('filter.php',{
-                genre: selectedOption
-            },(info)=>{
-                $('.movies-box').html(info);
-            })
-        }
+        // var selectedItem = document.getElementById("genre");
+        //     selectedItem.onchange = function() {
+        //     var selectedOption = this.options[this.selectedIndex].value;
+        //     console.log(selectedOption );
+        //     $.post('filter.php',{
+        //         genre: selectedOption
+        //     },(info)=>{
+        //         $('.movies-box').html(info);
+        //     })
+        // }
         var cselectedItem = document.getElementById("country");
             cselectedItem.onchange = function() {
             var cselectedOption = this.options[this.selectedIndex].value;
